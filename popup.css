@@ -1,0 +1,17 @@
+* {
+  font-family: 'Courier New';
+}
+
+body {
+  width     : 260px;
+  position  : relative;
+  background: #f9f9f9 url(icon128.png) center center no-repeat
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  padding-left: 15px;
+}

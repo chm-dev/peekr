@@ -1,0 +1,36 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Worker",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "C:\\ProgramData\\nvm\\v10.15.3\\node_modules\\@dollarshaveclub\\cloudworker\\bin\\cloudworker.js",
+      "args": [
+        "-d",
+        "-r",
+        "${file}"
+      ],
+      "runtimeArgs": [
+        "--inspect=9992"
+      ],
+      "port": 9992
+    }
+  ]
+}
