@@ -64,12 +64,22 @@
       // user presses SHIFT key - handle window shenaningans
       if (modalOnScreen())
         chrome.runtime.sendMessage({ openInWindow: previewIfrm.src });
-      else if (lastOverElement) {
-        // if user hovers the mouse to any link
-        backupBodyStyle = document.body.style.overflow;
-        previewIfrm.src = lastOverElement.href;
-        previewOvrly.style.display = 'block';
-        previewIfrm.style.display = 'block';
+      else {
+        const hvr = document.elementsFromPoint(mx, my).filter(el => {
+          return el.tagName === 'A' && el.hasAttribute('href')
+            ? el.tagName
+            : false;
+        });
+        if (typeof hvr === 'object' && hvr.length > 0) var prvA = hvr[0];
+        else return false;
+
+        if (prvA) {
+          // if user hovers the mouse to any link
+          backupBodyStyle = document.body.style.overflow;
+          previewIfrm.src = prvA.href;
+          previewOvrly.style.display = 'block';
+          previewIfrm.style.display = 'block';
+        }
       }
     }
   });
@@ -82,4 +92,11 @@
   // add popup to body
   document.body.appendChild(previewOvrly);
   document.body.appendChild(previewIfrm);
+  let mx;
+  let my;
+  document.onmousemove = function(e) {
+    // track mouse pos so we can retrieve it when preview key is down
+    mx = e.pageX;
+    my = e.pageY;
+  };
 })();
