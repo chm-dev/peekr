@@ -17,17 +17,18 @@
     "default_title": "Peekr"
   },
   "permissions": [
-    "tabs", "webRequest", "webRequestBlocking", "<all_urls>"
+    "tabs", "webRequest", "webRequestBlocking", "webNavigation", "<all_urls>"
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js", "hot-reload.js"]
   },
   "content_scripts": [
     {
       "matches": [
         "http://*/*", "https://*/*"
       ],
-      "js": ["peekr.js"]
+      "js": ["entry.js"]
     }
-  ]
+  ],
+  "web_accessible_resources": ["/assets/**", "/assets/assets.js", "peekr.js"]
 }
