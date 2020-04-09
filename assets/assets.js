@@ -25,7 +25,7 @@ iframe#peekr_iframe {
   display         : none;
 }
 
-.peekr_loading_border_container {
+#peekr_loading_border_container {
   position : absolute;
   clip-path: polygon(-100% -100%, -100% 200%, 0 200%, 0 0, 100% 0, 100% 100%, 0 100%, 0 200%, 200% 200%, 200% -100%);
   z-index  : 2147483620;
@@ -196,4 +196,6 @@ iframe#peekr_iframe {
 }
 `;
 
-export { css };
+export {
+  css
+};
