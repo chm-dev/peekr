@@ -1,4 +1,5 @@
-const css = `
+const previewStyles = document.createElement('style');
+previewStyles.innerHTML = `
 iframe#peekr_iframe {
   position     : fixed;
   width        : 90vw;
@@ -204,5 +205,4 @@ iframe#peekr_iframe {
   display                    : block !important;
 }
 `;
-
-export { css };
+document.head.appendChild(previewStyles);

@@ -1,4 +1,3 @@
-import { css as generalCSS } from './assets/assets.js';
 let backupBodyStyle = '';
 const iframeSandbox =
   'allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popup' +
@@ -6,9 +5,6 @@ const iframeSandbox =
 const hoverTimeBeforeCache = 500; //time before href is loaded to cache iframe
 let cached = [];
 const glowingBorderSize = 8; //pixels
-
-const previewStyles = document.createElement('style');
-previewStyles.innerHTML = generalCSS;
 
 const previewOvrly = document.createElement('div');
 previewOvrly.id = 'peekr_overlay';
@@ -121,8 +117,17 @@ const modDownHandler = e => {
 // window.addEventListener('keydown', modDownHandler);
 // window.addEventListener('keyup', modUpHandler); escape
 window.addEventListener('keydown', function(e) {
-  if (e.keyCode == 27) {
-    return modalOnScreen() ? closeModal() : false;
+  if (modalOnScreen()) {
+    if (e.keyCode == 27) {
+      return closeModal();
+    }
+    if (e.keyCode === 16) {
+      return (document.location.href = previewIfrm.src);
+    }
+    if (e.code.toLowerCase().match('control')) {
+      chrome.runtime.sendMessage({ openInWindow: previewIfrm.src });
+      return closeModal();
+    }
   }
 });
 
@@ -165,7 +170,7 @@ const showGlowingBorder = linkElement => {
   previewGlowingBorderContainer.classList.add('fadeIn', 'pkr_anim');
 };
 // add popup to body
-document.head.appendChild(previewStyles);
+
 document.body.appendChild(previewOvrly);
 document.body.appendChild(previewIfrm);
 

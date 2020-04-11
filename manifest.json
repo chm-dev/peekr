@@ -27,7 +27,7 @@
       "matches": [
         "http://*/*", "https://*/*"
       ],
-      "js": ["entry.js"]
+      "js": ["/assets/assets.js", "/peekr.js"]
     }
   ],
   "web_accessible_resources": ["/assets/**", "/assets/assets.js", "peekr.js"]

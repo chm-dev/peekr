@@ -23,6 +23,8 @@ const windowsGetAll = getInfo => {
 };
 
 chrome.runtime.onMessage.addListener(async (msg, sndr) => {
+  console.log(msg);
+
   if (typeof msg === 'object' && msg.hasOwnProperty('openInWindow')) {
     currentWindow = await windowsGetCurrent();
     const gotoURL = msg.openInWindow; // new URL(msg.openInWindow).search.substr(1);
@@ -62,11 +64,6 @@ chrome.webRequest.onHeadersReceived.addListener(
   function(details) {
     return {
       responseHeaders: details.responseHeaders.filter(function(header) {
-        console.log('removed headers');
-        console.log(
-          HEADERS_TO_STRIP_LOWERCASE.indexOf(header.name.toLowerCase()) < 0
-        );
-
         return (
           HEADERS_TO_STRIP_LOWERCASE.indexOf(header.name.toLowerCase()) < 0
         );
