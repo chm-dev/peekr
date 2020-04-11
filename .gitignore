@@ -3,3 +3,4 @@ worker
 assets/spinner2.svg
 assets/spinner.svg
 assets/test.html
+ src/lib/iframe2image.withdomvas.min.js
